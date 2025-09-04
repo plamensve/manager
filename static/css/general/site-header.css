@@ -1,0 +1,21 @@
+.site-header {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.site-header .site-title {
+    font-size: 1.4em;
+    padding: 1em;
+}
+
+.site-header .site-title a {
+    color: #FED053;
+    text-decoration: none;
+}
+
+.site-header nav {
+    padding: 2em;
+}
