@@ -1,52 +1,73 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>Document</title>
-</head>
-<body>
-<header class="site-header">
+{% extends 'base.html' %}
 
-    <h1 class="site-title">
-        <a href="index.html">Site Title</a>
-    </h1>
+{% block title %}Fitness Tracker - Home{% endblock %}
 
-    <label for="main-nav-toggle">
-        <span class="open">Open</span>
-        <span class="close">Close</span>
-    </label>
-
-    <nav class="main-nav">
-        <ul>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contacts</a></li>
-        </ul>
-    </nav>
-
-</header>
-
-<main class="site-content">
-    <article class="page">
-        <header class="page-header">
-            <h2>Homepage</h2>
-        </header>
-        <section class="page-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, quia!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, quia!</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, quia!</p>
-        </section>
-    </article>
-</main>
-
-<footer class="site-footer">
-    <p>Site &copy; 2000-2025 All right reserved</p>
-</footer>
-</body>
-</html>
+{% block content %}
+<article class="page">
+    <header class="page-header">
+        <h2>Welcome to Fitness Tracker</h2>
+    </header>
+    <section class="page-content">
+        {% if user.is_authenticated %}
+            <div class="dashboard">
+                <div class="welcome-section">
+                    <h3>Welcome back, {{ user.username }}! 👋</h3>
+                    <p>Ready to continue your fitness journey?</p>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-icon">💪</div>
+                        <h4><a href="{% url 'workout_list' %}">Workouts</a></h4>
+                        <p>Track your training sessions and exercises</p>
+                        <div class="card-stats">8 exercises available</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon">🍎</div>
+                        <h4><a href="{% url 'meal_list' %}">Nutrition</a></h4>
+                        <p>Monitor your daily meals and calories</p>
+                        <div class="card-stats">Track macros & calories</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon">📊</div>
+                        <h4><a href="{% url 'progress_list' %}">Progress</a></h4>
+                        <p>Record your measurements and personal records</p>
+                        <div class="card-stats">Track your growth</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon">⚙️</div>
+                        <h4><a href="{% url 'profile' %}">Profile</a></h4>
+                        <p>Update your personal information and goals</p>
+                        <div class="card-stats">Customize your experience</div>
+                    </div>
+                </div>
+                <div class="quick-actions">
+                    <h4>Quick Actions</h4>
+                    <div class="quick-actions-grid">
+                        <a href="{% url 'add_workout' %}" class="quick-action-btn">
+                            <span class="icon">➕</span> Add Workout
+                        </a>
+                        <a href="{% url 'add_meal' %}" class="quick-action-btn">
+                            <span class="icon">🍽️</span> Log Meal
+                        </a>
+                        <a href="{% url 'add_progress' %}" class="quick-action-btn">
+                            <span class="icon">📏</span> Record Progress
+                        </a>
+                        <a href="{% url 'add_exercise' %}" class="quick-action-btn">
+                            <span class="icon">🏋️</span> Add Exercise
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="welcome">
+                <h3>Start Your Fitness Journey</h3>
+                <p>Track your workouts, monitor your nutrition, and achieve your fitness goals with our comprehensive fitness tracking platform.</p>
+                <div class="welcome-actions">
+                    <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
+                    <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+</article>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Meal - Fitness Tracker{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h2>Add Meal</h2>
+        <a href="{% url 'meal_list' %}" class="btn btn-secondary">Back to Nutrition</a>
+    </div>
+    
+    <form method="post" class="meal-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.name.id_for_label }}">Meal Name:</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.calories.id_for_label }}">Calories:</label>
+            {{ form.calories }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.protein.id_for_label }}">Protein (g):</label>
+            {{ form.protein }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.carbs.id_for_label }}">Carbohydrates (g):</label>
+            {{ form.carbs }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.fat.id_for_label }}">Fat (g):</label>
+            {{ form.fat }}
+        </div>
+        <button type="submit" class="btn btn-primary">Add Meal</button>
+    </form>
+</div>
+{% endblock %}

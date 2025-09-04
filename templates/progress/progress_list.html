@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}Progress - Fitness Tracker{% endblock %}
+
+{% block content %}
+<div class="progress-container">
+    <div class="progress-header">
+        <h2>My Progress</h2>
+        <div class="progress-actions">
+            <a href="{% url 'add_progress' %}" class="btn btn-primary">Add Progress</a>
+            <a href="{% url 'add_personal_record' %}" class="btn btn-secondary">Add Personal Record</a>
+        </div>
+    </div>
+
+    <div class="progress-sections">
+        <!-- Body Measurements -->
+        <div class="measurements-section">
+            <h3>Body Measurements</h3>
+            {% if progress_entries %}
+                <div class="measurements-list">
+                    {% for entry in progress_entries %}
+                        <div class="measurement-item">
+                            <div class="measurement-date">{{ entry.date|date:"M d, Y" }}</div>
+                            <div class="measurement-details">
+                                <div class="measurement-detail">
+                                    <span class="detail-label">Weight:</span>
+                                    <span class="detail-value">{{ entry.weight }} kg</span>
+                                </div>
+                                {% if entry.chest %}
+                                    <div class="measurement-detail">
+                                        <span class="detail-label">Chest:</span>
+                                        <span class="detail-value">{{ entry.chest }} cm</span>
+                                    </div>
+                                {% endif %}
+                                {% if entry.waist %}
+                                    <div class="measurement-detail">
+                                        <span class="detail-label">Waist:</span>
+                                        <span class="detail-value">{{ entry.waist }} cm</span>
+                                    </div>
+                                {% endif %}
+                                {% if entry.biceps %}
+                                    <div class="measurement-detail">
+                                        <span class="detail-label">Biceps:</span>
+                                        <span class="detail-value">{{ entry.biceps }} cm</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- ACTION BUTTONS -->
+                            <div class="measurement-actions">
+                                <a href="{% url 'edit_progress' entry.pk %}" class="btn btn-secondary">Edit</a>
+                                <form action="{% url 'delete_progress' entry.pk %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this progress entry?')">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <p>No progress entries yet. Start tracking your measurements!</p>
+                    <a href="{% url 'add_progress' %}" class="btn btn-primary">Add First Entry</a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Personal Records -->
+        <div class="personal-records-section">
+            <h3>Personal Records</h3>
+            {% if personal_records %}
+                <div class="records-list">
+                    {% for record in personal_records %}
+                        <div class="record-item">
+                            <div class="record-info">
+                                <h4>{{ record.exercise }}</h4>
+                                <p class="record-date">{{ record.date|date:"M d, Y" }}</p>
+                            </div>
+                            <div class="record-weight">
+                                <span class="weight-value">{{ record.weight }} kg</span>
+                            </div>
+
+                            <!-- ACTION BUTTONS -->
+                            <div class="record-actions">
+                                <a href="{% url 'edit_personal_record' record.pk %}" class="btn btn-secondary">Edit</a>
+                                <form action="{% url 'delete_personal_record' record.pk %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <p>No personal records yet. Start tracking your achievements!</p>
+                    <a href="{% url 'add_personal_record' %}" class="btn btn-primary">Add First Record</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

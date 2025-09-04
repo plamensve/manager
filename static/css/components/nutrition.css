@@ -1,0 +1,92 @@
+/* Nutrition Specific Styles */
+.daily-summary {
+    background-color: #3b3f46;
+    padding: 1.5em;
+    border-radius: 0.5em;
+    margin-bottom: 2em;
+}
+
+.daily-summary h3 {
+    color: #FED053;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1em;
+}
+
+.summary-item {
+    text-align: center;
+    padding: 1em;
+    background-color: #2a2d33;
+    border-radius: 0.3em;
+}
+
+.summary-label {
+    display: block;
+    color: #FED053;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+.summary-value {
+    display: block;
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.meals-section, .meals-history {
+    margin-bottom: 2em;
+}
+
+.meals-section h3, .meals-history h3 {
+    color: #FED053;
+    margin-bottom: 1em;
+}
+
+.meals-list {
+    display: grid;
+    gap: 1em;
+}
+
+.meal-item {
+    background-color: #3b3f46;
+    padding: 1.5em;
+    border-radius: 0.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.meal-item:hover {
+    transform: translateY(-2px);
+}
+
+.meal-info h4 {
+    color: #FED053;
+    margin-bottom: 0.5em;
+}
+
+.meal-info p {
+    color: #ffffff;
+    margin: 0;
+}
+
+.meal-macros {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.meal-macros span {
+    color: #FED053;
+    font-weight: 600;
+    background-color: #2a2d33;
+    padding: 0.25em 0.5em;
+    border-radius: 0.3em;
+}

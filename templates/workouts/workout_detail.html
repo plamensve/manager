@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Workout {{ workout.date|date:"M d, Y" }} - Fitness Tracker{% endblock %}
+
+{% block content %}
+<div class="workout-detail-container">
+    <div class="workout-detail-header">
+        <h2>Workout - {{ workout.date|date:"F d, Y" }}</h2>
+        <a href="{% url 'add_exercise_to_workout' workout.id %}" class="btn btn-primary">Add Exercise</a>
+    </div>
+
+    {% if workout.notes %}
+        <div class="workout-notes">
+            <h3>Notes</h3>
+            <p>{{ workout.notes }}</p>
+        </div>
+    {% endif %}
+
+    <div class="exercises-section">
+        <h3>Exercises</h3>
+        {% if exercises %}
+            <div class="exercises-list">
+                {% for exercise in exercises %}
+                    <div class="exercise-item">
+                        <div class="exercise-info">
+                            <h4>{{ exercise.exercise.name }}</h4>
+                            <p class="exercise-category">{{ exercise.exercise.get_category_display }}</p>
+                        </div>
+                        <div class="exercise-details">
+                            <div class="exercise-sets">
+                                <span class="detail-label">Sets:</span>
+                                <span class="detail-value">{{ exercise.sets }}</span>
+                            </div>
+                            <div class="exercise-reps">
+                                <span class="detail-label">Reps:</span>
+                                <span class="detail-value">{{ exercise.reps }}</span>
+                            </div>
+                            {% if exercise.weight %}
+                                <div class="exercise-weight">
+                                    <span class="detail-label">Weight:</span>
+                                    <span class="detail-value">{{ exercise.weight }} kg</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p>No exercises added to this workout yet.</p>
+                <a href="{% url 'add_exercise_to_workout' workout.id %}" class="btn btn-primary">Add Exercise</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="workout-actions">
+        <a href="{% url 'workout_list' %}" class="btn btn-secondary">Back to Workouts</a>
+    </div>
+</div>
+{% endblock %}

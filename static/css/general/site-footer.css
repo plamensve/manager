@@ -1,3 +1,4 @@
+/* Legacy footer styles - overridden by components/footer.css */
 .site-footer {
-    padding-top: 2em;
+    /* Styles moved to components/footer.css for better organization */
 }

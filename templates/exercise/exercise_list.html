@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Exercises - Fitness Tracker{% endblock %}
+
+{% block content %}
+<div class="exercise-container">
+    <div class="exercise-header">
+        <h2>Exercise Library</h2>
+        <a href="{% url 'add_exercise' %}" class="btn btn-primary">
+            <span class="icon">➕</span> Add Exercise
+        </a>
+    </div>
+    
+    <div class="filter-section">
+        <h3>Filter by Category:</h3>
+        <div class="category-filters">
+            <a href="{% url 'exercise_list' %}" class="filter-btn {% if not selected_category %}active{% endif %}">All</a>
+            {% for value, label in categories %}
+                <a href="{% url 'exercise_list' %}?category={{ value }}" 
+                   class="filter-btn {% if selected_category == value %}active{% endif %}">
+                    {{ label }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="exercise-grid">
+        {% for exercise in exercises %}
+            <div class="exercise-card">
+                <h3>{{ exercise.name }}</h3>
+                <p class="exercise-category">{{ exercise.get_category_display }}</p>
+                {% if exercise.description %}
+                    <p class="exercise-description">{{ exercise.description }}</p>
+                {% endif %}
+                <div class="exercise-actions">
+                    <a href="{% url 'exercise_detail' exercise.id %}" class="btn btn-primary">
+                        <span class="icon">👁️</span> View Details
+                    </a>
+                    {% if exercise.video_url %}
+                        <a href="{{ exercise.video_url }}" target="_blank" class="btn btn-secondary">
+                            <span class="icon">🎥</span> Watch Video
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'edit_exercise' exercise.id %}" class="btn btn-edit">
+                        <span class="icon">✏️</span> Edit
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <p>No exercises found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

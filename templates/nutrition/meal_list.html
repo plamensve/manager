@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Nutrition - Fitness Tracker{% endblock %}
+
+{% block content %}
+<div class="nutrition-container">
+    <div class="nutrition-header">
+        <h2>Nutrition Tracker</h2>
+        <a href="{% url 'add_meal' %}" class="btn btn-primary">Add Meal</a>
+    </div>
+
+    <div class="daily-summary">
+        <h3>Today's Summary ({{ today|date:"F d, Y" }})</h3>
+        <div class="summary-grid">
+            <div class="summary-item">
+                <span class="summary-label">Calories:</span>
+                <span class="summary-value">{{ daily_totals.total_calories|default:0 }}</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Protein:</span>
+                <span class="summary-value">{{ daily_totals.total_protein|default:0|floatformat:1 }}g</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Carbs:</span>
+                <span class="summary-value">{{ daily_totals.total_carbs|default:0|floatformat:1 }}g</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">Fat:</span>
+                <span class="summary-value">{{ daily_totals.total_fat|default:0|floatformat:1 }}g</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="meals-section">
+        <h3>Today's Meals</h3>
+        {% if today_meals %}
+            <div class="meals-list">
+                {% for meal in today_meals %}
+                    <div class="meal-item">
+                        <div class="meal-info">
+                            <h4>{{ meal.name }}</h4>
+                            <p>{{ meal.calories }} calories</p>
+                        </div>
+                        <div class="meal-macros">
+                            {% if meal.protein %}<span>P: {{ meal.protein }}g</span>{% endif %}
+                            {% if meal.carbs %}<span>C: {{ meal.carbs }}g</span>{% endif %}
+                            {% if meal.fat %}<span>F: {{ meal.fat }}g</span>{% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No meals recorded for today.</p>
+        {% endif %}
+    </div>
+
+    <div class="meals-history">
+        <h3>Recent Meals</h3>
+        {% if meals %}
+            <div class="meals-list">
+                {% for meal in meals %}
+                    <div class="meal-item">
+                        <div class="meal-info">
+                            <h4>{{ meal.name }}</h4>
+                            <p>{{ meal.calories }} calories - {{ meal.date|date:"M d" }}</p>
+                        </div>
+                        <div class="meal-macros">
+                            {% if meal.protein %}<span>P: {{ meal.protein }}g</span>{% endif %}
+                            {% if meal.carbs %}<span>C: {{ meal.carbs }}g</span>{% endif %}
+                            {% if meal.fat %}<span>F: {{ meal.fat }}g</span>{% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No meals recorded yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

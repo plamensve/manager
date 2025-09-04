@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 body {
@@ -10,12 +11,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative;
+    padding-bottom: 0; /* Ensure no extra padding */
 }
 
 /* Header */
 .site-header {
     background-color: #3b3f46;
-    padding-bottom: 1em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,10 +54,8 @@ body {
     padding: 2em;
 }
 
-/* Footer */
+/* Footer - styles moved to components/footer.css */
 .site-footer {
-    background-color: #3b3f46;
-    text-align: center;
-    padding: 1em;
-    color: #fed053;
+    /* Footer styles are now in components/footer.css */
+    margin-top: auto;
 }

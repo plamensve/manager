@@ -1,7 +1,15 @@
 @import "base/reset.css";
 @import "base/typography.css";
 
+@import "components/scroll.css";
 @import "components/navigation.css";
+@import "components/forms.css";
+@import "components/cards.css";
+@import "components/alerts.css";
+@import "components/nutrition.css";
+@import "components/progress.css";
+@import "components/workouts.css";
+@import "components/footer.css";
 
 @import "general/layout.css";
 @import "general/site-header.css";

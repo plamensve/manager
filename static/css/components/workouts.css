@@ -1,0 +1,102 @@
+/* Workout Specific Styles */
+.workout-detail-container {
+    padding: 2em;
+}
+
+.workout-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.workout-detail-header h2 {
+    color: #FED053;
+    margin: 0;
+}
+
+.workout-notes {
+    background-color: #3b3f46;
+    padding: 1.5em;
+    border-radius: 0.5em;
+    margin-bottom: 2em;
+}
+
+.workout-notes h3 {
+    color: #FED053;
+    margin-bottom: 1em;
+}
+
+.workout-notes p {
+    color: #ffffff;
+    margin: 0;
+    font-style: italic;
+}
+
+.exercises-section {
+    background-color: #3b3f46;
+    padding: 1.5em;
+    border-radius: 0.5em;
+    margin-bottom: 2em;
+}
+
+.exercises-section h3 {
+    color: #FED053;
+    margin-bottom: 1em;
+}
+
+.exercises-list {
+    display: grid;
+    gap: 1em;
+}
+
+.exercise-item {
+    background-color: #2a2d33;
+    padding: 1.5em;
+    border-radius: 0.3em;
+    transition: transform 0.3s ease;
+}
+
+.exercise-item:hover {
+    transform: translateY(-2px);
+}
+
+.exercise-info h4 {
+    color: #FED053;
+    margin-bottom: 0.5em;
+}
+
+.exercise-category {
+    color: #FED053;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+.exercise-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1em;
+}
+
+.exercise-sets, .exercise-reps, .exercise-weight {
+    text-align: center;
+}
+
+.detail-label {
+    display: block;
+    color: #FED053;
+    font-size: 0.9em;
+    margin-bottom: 0.25em;
+}
+
+.detail-value {
+    display: block;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.workout-actions {
+    text-align: center;
+}

@@ -1,107 +1,144 @@
-/* General styling for all elements inside nav */
-
-.site-header nav {
-
+/* HEADER BASE */
+.site-header {
+    background-color: #111;
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-.site-header nav ul {
-
-}
-
-.site-header nav li {
-    display: block;
-}
-
-.site-header nav a {
-    display: block;
-    padding: 0.6em 1.5em;
-    background-color: #FED053;
-    color: #3b3f46 !important;
-    border-radius: 0.3em;
+/* LOGO */
+.site-title a {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #FED053;
     text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* TOGGLE (mobile only) */
+#main-nav-toggle {
+    display: none;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: #FED053;
+    cursor: pointer;
+}
+
+.menu-toggle .close {
+    display: none;
+}
+
+/* NAV STYLING */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li {
+    display: inline-block;
+}
+
+.main-nav a,
+.btn-link {
+    display: inline-block;
+    padding: 0.7em 1.6em;
+    background-color: transparent;
+    color: #FED053;
+    font-weight: 700;
     font-size: 1rem;
-    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
 }
 
-/* Hover */
-.site-header nav a:hover {
-    background-color: #3b3f46;
-    color: #FED053 !important;
-    box-shadow: inset 0 0 10px rgba(255, 208, 83, 0.8),
-                0 0 8px rgba(0, 0, 0, 0.4);
-}
-
-/* Specific styling for first level */
-
-.site-header nav > ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-}
-
-.site-header nav > ul > li {
-
-}
-
-#main-nav-toggle {
+/* GLOWY SLIDE EFFECT */
+.main-nav a::before,
+.btn-link::before {
+    content: "";
     position: absolute;
+    left: -100%;
     top: 0;
+    width: 100%;
+    height: 100%;
+    background: #FED053;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+}
+
+.main-nav a:hover::before,
+.btn-link:hover::before {
     left: 0;
-    visibility: hidden;
-    pointer-events: none;
 }
 
-label[for="main-nav-toggle"] {
-    display: none;
-    background-color: #369;
-    color: #fff;
-    border-radius: 0.3em;
-    padding: 0.5em 1.5em;
+.main-nav a:hover,
+.btn-link:hover {
+    color: #111 !important;
 }
 
-@media (hover: none) {
+/* LOGOUT FORM STYLING */
+.btn-link {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
 
-    label[for="main-nav-toggle"] {
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .menu-toggle {
         display: block;
     }
 
-    label[for="main-nav-toggle"] .close {
+    .main-nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #111;
+        padding: 1rem 2rem;
         display: none;
     }
 
-    .site-header nav {
-        flex-basis: 100%;
+    #main-nav-toggle:checked + .menu-toggle .open {
         display: none;
     }
 
-    .site-header nav li {
-        flex-basis: 100%;
+    #main-nav-toggle:checked + .menu-toggle .close {
+        display: inline;
     }
 
-    .site-header nav li a {
-        text-align: center;
+    #main-nav-toggle:checked ~ nav.main-nav ul {
+        display: flex;
+        animation: slideIn 0.3s ease-in-out forwards;
     }
-
-    #main-nav-toggle:checked ~ .site .site-header label[for="main-nav-toggle"] .open {
-        display: none;
-    }
-
-     #main-nav-toggle:checked ~ .site .site-header label[for="main-nav-toggle"] .close {
-        display: block;
-    }
-
-    #main-nav-toggle:checked ~ .site .site-header nav {
-        display: block;
-    }
-
-
 }
 
-@media (hover: hover) {
-    .site-header nav {
-        display: block;
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

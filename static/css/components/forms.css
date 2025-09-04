@@ -1,0 +1,102 @@
+/* Form Styles */
+.form-container, .auth-container, .profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.form-header, .auth-form, .profile-form {
+    background-color: #3b3f46;
+    padding: 2em;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+}
+
+.form-header h2, .auth-form h2, .profile-form h2 {
+    color: #FED053;
+    margin-bottom: 1em;
+}
+
+.form-group {
+    margin-bottom: 1.5em;
+}
+
+.form-group label {
+    display: block;
+    color: #FED053;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75em;
+    border: 2px solid #FED053;
+    border-radius: 0.3em;
+    background-color: #ffffff;
+    color: #3b3f46;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #FED053;
+    box-shadow: 0 0 10px rgba(254, 208, 83, 0.3);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    border: none;
+    border-radius: 0.3em;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: #FED053;
+    color: #3b3f46;
+}
+
+.btn-primary:hover {
+    background-color: #3b3f46;
+    color: #FED053;
+    box-shadow: 0 0 10px rgba(254, 208, 83, 0.5);
+}
+
+.btn-secondary {
+    background-color: #3b3f46;
+    color: #FED053;
+    border: 2px solid #FED053;
+}
+
+.btn-secondary:hover {
+    background-color: #FED053;
+    color: #3b3f46;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 1em;
+    color: #FED053;
+}
+
+.auth-link a {
+    color: #FED053;
+    text-decoration: underline;
+}
+
+.auth-link a:hover {
+    color: #ffffff;
+}
+
+.error {
+    color: #ff6b6b;
+    font-size: 0.9em;
+    margin-top: 0.25em;
+}

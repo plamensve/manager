@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Workout - Fitness Tracker{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">
+        <h2>Add Workout</h2>
+        <a href="{% url 'workout_list' %}" class="btn btn-secondary">Back to Workouts</a>
+    </div>
+    
+    <form method="post" class="workout-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.date.id_for_label }}">Date:</label>
+            {{ form.date }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.notes.id_for_label }}">Notes (optional):</label>
+            {{ form.notes }}
+        </div>
+        <button type="submit" class="btn btn-primary">Create Workout</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>{% block title %}Fitness Tracker{% endblock %}</title>
+</head>
+<body>
+<header class="site-header">
+    <h1 class="site-title">
+        <a href="{% url 'index' %}">Fitness Tracker</a>
+    </h1>
+
+    <input type="checkbox" id="main-nav-toggle"/>
+    <label for="main-nav-toggle" class="menu-toggle">
+        <span class="open">☰</span>
+        <span class="close">✕</span>
+    </label>
+
+    <nav class="main-nav">
+        <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'workout_list' %}">Workouts</a></li>
+                <li><a href="{% url 'exercise_list' %}">Exercises</a></li>
+                <li><a href="{% url 'meal_list' %}">Nutrition</a></li>
+                <li><a href="{% url 'progress_list' %}">Progress</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-link">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+
+<main class="site-content">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Fitness Tracker</h4>
+            <p>Your comprehensive fitness companion for tracking workouts, nutrition, and progress.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">📘</a>
+                <a href="#" class="social-link">📷</a>
+                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link">💼</a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'workout_list' %}">Workouts</a></li>
+                <li><a href="{% url 'exercise_list' %}">Exercises</a></li>
+                <li><a href="{% url 'meal_list' %}">Nutrition</a></li>
+                <li><a href="{% url 'progress_list' %}">Progress</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Features</h4>
+            <ul class="footer-links">
+                <li><a href="#">Workout Tracking</a></li>
+                <li><a href="#">Nutrition Logging</a></li>
+                <li><a href="#">Progress Monitoring</a></li>
+                <li><a href="#">Exercise Library</a></li>
+                <li><a href="#">Personal Records</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Support</h4>
+            <ul class="footer-links">
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <p>&copy; 2025 Fitness Tracker. All rights reserved.</p>
+            <p class="footer-tagline">Built with ❤️ for fitness enthusiasts</p>
+        </div>
+    </div>
+</footer>
+
+<input type="checkbox" id="main-nav-toggle">
+<script src="{% static 'js/hide_success_messages.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Workouts - Fitness Tracker{% endblock %}
+
+{% block content %}
+<div class="workouts-container">
+    <div class="workouts-header">
+        <h2>My Workouts</h2>
+        <a href="{% url 'add_workout' %}" class="btn btn-primary">Add Workout</a>
+    </div>
+
+    {% if workouts %}
+        <div class="workouts-list">
+            {% for workout in workouts %}
+                <div class="workout-card">
+                    <div class="workout-info">
+                        <h3>{{ workout.date|date:"F d, Y" }}</h3>
+                        {% if workout.notes %}
+                            <p class="workout-notes">{{ workout.notes }}</p>
+                        {% endif %}
+                        <p class="workout-exercises">
+                            {{ workout.exercises.count }} exercise{{ workout.exercises.count|pluralize }}
+                        </p>
+                    </div>
+                    <div class="workout-actions">
+                        <a href="{% url 'workout_detail' workout.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h3>No workouts yet</h3>
+            <p>Start tracking your fitness journey by adding your first workout!</p>
+            <a href="{% url 'add_workout' %}" class="btn btn-primary">Add Your First Workout</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

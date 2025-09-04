@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ exercise.name }} - Fitness Tracker{% endblock %}
+
+{% block content %}
+<div class="exercise-detail-container">
+    <div class="exercise-detail">
+        <h2>{{ exercise.name }}</h2>
+        <p class="exercise-category">{{ exercise.get_category_display }}</p>
+        
+        {% if exercise.description %}
+            <div class="exercise-description">
+                <h3>Description</h3>
+                <p>{{ exercise.description }}</p>
+            </div>
+        {% endif %}
+        
+        {% if exercise.video_url %}
+            <div class="exercise-video">
+                <h3>Video Tutorial</h3>
+                <a href="{{ exercise.video_url }}" target="_blank" class="btn btn-primary">Watch Video</a>
+            </div>
+        {% endif %}
+        
+        <div class="exercise-actions">
+            <a href="{% url 'exercise_list' %}" class="btn btn-secondary">Back to Exercises</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

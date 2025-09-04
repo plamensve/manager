@@ -16,8 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from fitness_manager.accounts.views import custom_login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('fitness_manager.main.urls'))
+    path('', include('fitness_manager.main.urls')),
+    path('accounts/', include('fitness_manager.accounts.urls')),
+    path('exercise/', include('fitness_manager.exercise.urls')),
+    path('nutrition/', include('fitness_manager.nutrition.urls')),
+    path('progress/', include('fitness_manager.progress.urls')),
+    path('workouts/', include('fitness_manager.workouts.urls')),
+    path('login/', custom_login, name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
 ]

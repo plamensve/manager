@@ -1,0 +1,104 @@
+/* Progress Specific Styles */
+.progress-sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2em;
+}
+
+@media (min-width: 768px) {
+    .progress-sections {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.measurements-section, .personal-records-section {
+    background-color: #3b3f46;
+    padding: 1.5em;
+    border-radius: 0.5em;
+}
+
+.measurements-section h3, .personal-records-section h3 {
+    color: #FED053;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.measurements-list, .records-list {
+    display: grid;
+    gap: 1em;
+}
+
+.measurement-item, .record-item {
+    background-color: #2a2d33;
+    padding: 1.5em;
+    border-radius: 0.3em;
+    transition: transform 0.3s ease;
+}
+
+.measurement-item:hover, .record-item:hover {
+    transform: translateY(-2px);
+}
+
+.measurement-date {
+    color: #FED053;
+    font-weight: 600;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.measurement-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.5em;
+}
+
+.measurement-detail {
+    text-align: center;
+}
+
+.detail-label {
+    display: block;
+    color: #FED053;
+    font-size: 0.9em;
+    margin-bottom: 0.25em;
+}
+
+.detail-value {
+    display: block;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.record-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.record-info h4 {
+    color: #FED053;
+    margin-bottom: 0.5em;
+}
+
+.record-date {
+    color: #ffffff;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.record-weight {
+    text-align: right;
+}
+
+.weight-value {
+    color: #FED053;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.progress-actions {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+

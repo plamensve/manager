@@ -30,7 +30,12 @@ ALLOWED_HOSTS = []
 
 # Application definition
 MY_APPS = [
-    'fitness_manager.main'
+    'fitness_manager.main',
+    'fitness_manager.accounts',
+    'fitness_manager.exercise',
+    'fitness_manager.nutrition',
+    'fitness_manager.progress',
+    'fitness_manager.workouts'
 ]
 
 INSTALLED_APPS = [
@@ -131,3 +136,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Login/Logout URLs
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
